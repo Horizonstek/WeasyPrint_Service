@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="arabic-doc.md" style="display:inline-block;padding:10px 18px;border-radius:6px;background:#1a73e8;color:#fff;text-decoration:none;font-weight:600;">
+    دليل الاستخدام باللغة العربية
+  </a>
+</p>
+
 # Universal PDF Rendering Service
 
 FastAPI microservice that turns HTML templates into PDFs with Jinja2 + WeasyPrint. Ships with multiple Arabic RTL templates (salary statement, performance summary, departmental dashboard, billing statement, classic single-page briefing) plus ready-to-extend static assets.

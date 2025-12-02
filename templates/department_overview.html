@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ report_title }}</title>
+    <style>
+      @import url("css/department.css");
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="logo">LOGO</div>
+      <div class="title-block">
+        <h1>{{ report_title }}</h1>
+        <p>{{ report_period }}</p>
+      </div>
+    </header>
+
+    <footer class="page-footer">
+      <span>{{ footer_note }}</span>
+      <span class="page-number"></span>
+    </footer>
+
+    <div class="dashboard-shell">
+
+      <section class="card">
+        <h2>تفاصيل الأقسام</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>القسم</th>
+              <th>عدد الموظفين</th>
+              <th>الميزانية</th>
+              <th>الإنفاق</th>
+              <th>نسبة الالتزام</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dept in departments %}
+            <tr>
+              <td>{{ dept.name }}</td>
+              <td>{{ dept.headcount }}</td>
+              <td>{{ dept.budget }}</td>
+              <td>{{ dept.spend }}</td>
+              <td>{{ dept.compliance }}</td>
+              <td>
+                <span class="status-pill {{ dept.status_class }}">{{ dept.status_label }}</span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>المخاطر الحالية</h2>
+        <div class="risk-grid">
+          {% for risk in risks %}
+          <div class="risk-chip">
+            <strong>{{ risk.title }}</strong>
+            <span>المالك: {{ risk.owner }}</span>
+            <span>التأثير: {{ risk.impact }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>أهم المبادرات</h2>
+        <div class="initiatives-list">
+          {% for initiative in initiatives %}
+          <div class="initiative">
+            <strong>{{ initiative.title }}</strong>
+            <span>الوصف: {{ initiative.description }}</span>
+            <span>المسؤول: {{ initiative.owner }}</span>
+            <span>الحالة: {{ initiative.status }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,232 @@
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/Cairo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/Cairo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --bg: #f2f4f7;
+  --shell-bg: #ffffff;
+  --text: #1d2433;
+  --muted: #5f6c80;
+  --accent: #0a66c2;
+  --border: rgba(15, 23, 42, 0.12);
+  --soft: rgba(10, 102, 194, 0.08);
+}
+
+@page {
+  size: A4;
+  margin: 4cm 1.9cm 3cm 1.9cm;
+  @top-center {
+    content: element(report-header);
+  }
+  @bottom-center {
+    content: element(report-footer);
+  }
+}
+
+body {
+  font-family: "Cairo", "Tahoma", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 1.25rem;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 2px solid var(--soft);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
+  position: running(report-header);
+}
+
+.logo {
+  width: 82px;
+  height: 82px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0f2027, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.meta-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.meta-block h1 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.meta-row {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.classic-shell {
+  background: var(--shell-bg);
+  border-radius: 20px;
+  padding: 1.8rem 2.3rem;
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.meta-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  background: #fafbfe;
+}
+
+.meta-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.9rem;
+}
+
+.stat-card {
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid var(--soft);
+  background: rgba(10, 102, 194, 0.04);
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.stat-card small {
+  color: #1a8456;
+}
+
+.table-dense {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table-dense thead th {
+  text-align: right;
+  background: rgba(10, 102, 194, 0.07);
+  padding: 0.65rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.table-dense tbody td {
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.table-dense tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+.badge-success {
+  background: rgba(46, 204, 113, 0.2);
+  color: #117a43;
+}
+
+.badge-risk {
+  background: rgba(231, 76, 60, 0.18);
+  color: #a12517;
+}
+
+.badge-watch {
+  background: rgba(241, 196, 15, 0.23);
+  color: #845a00;
+}
+
+.activity-log {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem;
+}
+
+.activity-item + .activity-item {
+  margin-top: 0.9rem;
+}
+
+.activity-item strong {
+  color: var(--accent);
+}
+
+.activity-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.notes-block {
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  padding: 1.2rem;
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.notes-block ul {
+  margin: 0;
+  padding-right: 1rem;
+}
+
+.notes-block li {
+  margin-bottom: 0.3rem;
+}
+
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--soft);
+  padding-top: 1rem;
+  margin-top: 2rem;
+  position: running(report-footer);
+}
+
+.page-footer .page-number::after {
+  content: "صفحة " counter(page) " من " counter(pages);
+}

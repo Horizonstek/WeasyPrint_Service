@@ -1,0 +1,169 @@
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/Cairo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/Cairo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --bg: #fdfdfd;
+  --text: #1a1a1a;
+  --muted: #6d6d6d;
+  --primary: #2b6777;
+  --border: rgba(26, 26, 26, 0.08);
+  --card: #ffffff;
+}
+
+body {
+  font-family: "Cairo", "Tahoma", sans-serif;
+  background: var(--bg);
+  @page {
+    size: A4;
+    margin: 4.5cm 2.3cm 3.2cm 2.3cm;
+    @top-center {
+      content: element(report-header);
+    }
+    @bottom-center {
+      content: element(report-footer);
+    }
+  }
+  color: var(--text);
+  margin: 0;
+  padding: 2.2rem;
+}
+
+.bill-shell {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 30px rgba(43, 103, 119, 0.12);
+}
+
+.bill-shell > * + * {
+  margin-top: 1.8rem;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1.2rem;
+  margin-bottom: 2rem;
+  position: running(report-header);
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  background: linear-gradient(130deg, #0f2027, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.invoice-meta {
+  text-align: right;
+}
+
+.invoice-meta h1 {
+  margin: 0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: var(--bg);
+  border-radius: 18px;
+  padding: 1.2rem;
+  border: 1px solid var(--border);
+}
+
+.info-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.9rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+
+th {
+  background: rgba(43, 103, 119, 0.08);
+}
+
+.line-items tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.summary-box {
+  margin-left: auto;
+  width: 320px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem;
+  background: var(--bg);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.summary-row.total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.notes {
+  font-size: 0.95rem;
+  color: var(--muted);
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 2rem;
+    position: running(report-footer);
+  }
+
+  .page-footer .page-number::after {
+    content: "صفحة " counter(page) " من " counter(pages);
+  }
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  break-inside: avoid;
+}

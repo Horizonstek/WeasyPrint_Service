@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ report_title }}</title>
+    <style>
+      @import url("css/report.css");
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="logo">LOGO</div>
+      <div class="report-title">
+        <h1>{{ report_title }}</h1>
+        <span>{{ report_period }}</span>
+      </div>
+    </header>
+
+    <footer class="page-footer">
+      <span>التاريخ: {{ report_date }}</span>
+      <span class="page-number"></span>
+    </footer>
+
+    <div class="report-shell">
+
+      <section class="card">
+        <h2>معلومات الموظف</h2>
+        <div class="grid">
+          <div class="info-item">
+            <span class="info-label">اسم الموظف</span>
+            <strong>{{ employee_name }}</strong>
+          </div>
+          <div class="info-item">
+            <span class="info-label">رقم الموظف</span>
+            <strong>{{ employee_id }}</strong>
+          </div>
+          <div class="info-item">
+            <span class="info-label">القسم</span>
+            <strong>{{ department }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>تفاصيل الراتب</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>البند</th>
+              <th>القيمة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>الراتب الأساسي</td>
+              <td>{{ basic_salary }}</td>
+            </tr>
+            <tr>
+              <td>البدلات</td>
+              <td>{{ allowances }}</td>
+            </tr>
+            <tr>
+              <td>الخصومات</td>
+              <td>{{ deductions }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>صافي الراتب</td>
+              <td>{{ net_salary }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      {% if salary_items %}
+      <section class="card">
+        <h2>تفاصيل البنود الموسعة</h2>
+        <table class="table-long">
+          <thead>
+            <tr>
+              <th>الفئة</th>
+              <th>الوصف</th>
+              <th>المبلغ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in salary_items %}
+            <tr>
+              <td>{{ item.category }}</td>
+              <td>{{ item.description }}</td>
+              <td>{{ item.amount }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+      {% endif %}
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ report_title }}</title>
+    <style>
+      @import url("css/classic.css");
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="logo">LOGO</div>
+      <div class="meta-block">
+        <h1>{{ report_title }}</h1>
+        <div class="meta-row">
+          <span>{{ report_period }}</span>
+          <span>لصالح: {{ prepared_for }}</span>
+        </div>
+        <div class="meta-row">
+          <span>إعداد: {{ prepared_by }}</span>
+          <span>التاريخ: {{ issued_date }}</span>
+        </div>
+      </div>
+    </header>
+
+    <footer class="page-footer">
+      <span>{{ footer_note }}</span>
+      <span class="page-number"></span>
+    </footer>
+
+    <div class="classic-shell">
+      <section class="meta-grid">
+        <div class="meta-card">
+          <span>العميل</span>
+          <strong>{{ prepared_for }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>موقع التنفيذ</span>
+          <strong>{{ region }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>نطاق العمل</span>
+          <strong>{{ scope }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>تاريخ التحديث</span>
+          <strong>{{ issued_date }}</strong>
+        </div>
+      </section>
+
+      <section class="stat-grid">
+        {% for card in stat_cards %}
+        <div class="stat-card">
+          <span class="muted">{{ card.label }}</span>
+          <strong>{{ card.value }}</strong>
+          <small>{{ card.trend }}</small>
+        </div>
+        {% endfor %}
+      </section>
+
+      <section>
+        <table class="table-dense">
+          <thead>
+            <tr>
+              <th>المحور</th>
+              <th>المستهدف</th>
+              <th>المنجز</th>
+              <th>الانحراف</th>
+              <th>الوضع</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in summary_table %}
+            <tr>
+              <td>{{ row.section }}</td>
+              <td>{{ row.target }}</td>
+              <td>{{ row.actual }}</td>
+              <td>{{ row.variance }}</td>
+              <td>
+                <span class="badge {{ row.badge_class }}">{{ row.status }}</span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <section class="activity-log">
+        <h3>أنشطة حرجة</h3>
+        {% for item in activities %}
+        <div class="activity-item">
+          <strong>{{ item.title }}</strong>
+          <span>{{ item.time }} · {{ item.owner }}</span>
+          <p>{{ item.detail }}</p>
+        </div>
+        {% endfor %}
+      </section>
+
+      <section class="notes-block">
+        <h3>ملاحظات تنفيذية</h3>
+        <ul>
+          {% for note in notes %}
+          <li>{{ note }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ report_title }}</title>
+    <style>
+      @import url("css/billing.css");
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="logo">LOGO</div>
+      <div class="invoice-meta">
+        <h1>{{ report_title }}</h1>
+        <p>رقم الفاتورة: {{ invoice_number }}</p>
+        <p>تاريخ الإصدار: {{ issue_date }} | تاريخ الاستحقاق: {{ due_date }}</p>
+      </div>
+    </header>
+
+    <footer class="page-footer">
+      <span>{{ footer_message }}</span>
+      <span class="page-number"></span>
+    </footer>
+
+    <div class="bill-shell">
+
+      <section class="info-grid">
+        <div class="info-card">
+          <h3>المرسل</h3>
+          <p>{{ bill_from.name }}</p>
+          <p>{{ bill_from.address }}</p>
+          <p>الرقم الضريبي: {{ bill_from.vat }}</p>
+          <p>الهاتف: {{ bill_from.phone }}</p>
+          <p>البريد: {{ bill_from.email }}</p>
+        </div>
+        <div class="info-card">
+          <h3>العميل</h3>
+          <p>{{ bill_to.name }}</p>
+          <p>{{ bill_to.address }}</p>
+          <p>الرقم الضريبي: {{ bill_to.vat }}</p>
+          <p>الهاتف: {{ bill_to.phone }}</p>
+          <p>البريد: {{ bill_to.email }}</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <table class="line-items">
+          <thead>
+            <tr>
+              <th>الوصف</th>
+              <th>الكمية</th>
+              <th>سعر الوحدة</th>
+              <th>الإجمالي</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in line_items %}
+            <tr>
+              <td>{{ item.description }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unit_price }}</td>
+              <td>{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <div class="summary-box">
+        <div class="summary-row">
+          <span>الإجمالي الفرعي</span>
+          <strong>{{ totals.subtotal }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>الضريبة</span>
+          <strong>{{ totals.tax }}</strong>
+        </div>
+        {% if totals.discount %}
+        <div class="summary-row">
+          <span>الخصم</span>
+          <strong>{{ totals.discount }}</strong>
+        </div>
+        {% endif %}
+        <div class="summary-row total">
+          <span>المبلغ المستحق</span>
+          <strong>{{ totals.total_due }}</strong>
+        </div>
+      </div>
+
+      <section class="notes">
+        <p>{{ notes }}</p>
+        <p>شروط الدفع: {{ payment_terms }}</p>
+      </section>
+
+    </div>
+  </body>
+</html>

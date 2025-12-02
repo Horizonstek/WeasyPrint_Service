@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/Cairo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/Cairo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --bg: #f7f7f7;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --muted: #5f6e7c;
+  --accent: #d1d8e0;
+}
+
+@page {
+  size: A4;
+  margin: 4.5cm 2.3cm 3.2cm 2.3cm;
+  @top-center {
+    content: element(report-header);
+  }
+  @bottom-center {
+    content: element(report-footer);
+  }
+}
+
+body {
+  font-family: "Cairo", "Tahoma", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 2.2rem;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  position: running(report-header);
+}
+
+.report-shell {
+  background: var(--card-bg);
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(44, 62, 80, 0.12);
+  padding: 2.5rem;
+}
+
+.report-shell > * + * {
+  margin-top: 1.75rem;
+}
+
+.logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #2c3e50, #4b6584);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.report-title {
+  flex: 1;
+  text-align: right;
+}
+
+.report-title h1 {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+.report-title span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.info-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+  text-align: right;
+}
+
+th {
+  background: #eef1f5;
+  font-weight: 600;
+}
+
+tfoot td {
+  font-weight: 700;
+  color: #16a085;
+  font-size: 1.05rem;
+}
+
+.table-long tbody tr:nth-child(even) {
+  background: rgba(44, 62, 80, 0.018);
+}
+
+.table-long td {
+  font-size: 0.92rem;
+  vertical-align: top;
+}
+
+.table-long tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--accent);
+  padding-top: 1rem;
+  margin-top: 2rem;
+  position: running(report-footer);
+}
+
+.page-footer .page-number::after {
+  content: "صفحة " counter(page) " من " counter(pages);
+}

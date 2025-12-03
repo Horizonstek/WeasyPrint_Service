@@ -10,7 +10,6 @@ env/
 
 # Environment variables and secrets
 .env
-.env.*
 
 # Tooling
 .mypy_cache/

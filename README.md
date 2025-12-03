@@ -25,7 +25,7 @@ Download Cairo font files (e.g., Cairo-Regular.ttf / Cairo-Bold.ttf) into `stati
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate # or venv\Scripts\activate.bat
+source .venv/bin/activate # or .venv\Scripts\activate.bat
 pip install -r requirements.txt
 cp .env.example .env
 ```
